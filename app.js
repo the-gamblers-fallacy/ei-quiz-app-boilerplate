@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Example store structure
  */
@@ -56,3 +58,5 @@ const store = {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+"This is Justin's attempt at submitting changes."
