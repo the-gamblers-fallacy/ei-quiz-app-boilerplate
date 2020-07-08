@@ -50,7 +50,7 @@ const questions = [
   },
   {
     question: 'How long does it take the Earth to revolve around the sun?',
-    responses: ['430 days', '234 days', '89 hours', '365 days'],
+    responses: ['24 hours', '234 days', '89 hours', '365 days'],
     correctResponse: '365 days'
   },
   {
@@ -78,6 +78,8 @@ const questions = [
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
+
+
 
 /********** RENDER FUNCTION(S) **********/
 
