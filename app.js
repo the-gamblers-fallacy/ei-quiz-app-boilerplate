@@ -79,12 +79,47 @@ const questions = [
 
 // These functions return HTML templates
 
+function startPage() {
+  return $(`
+    <div>
+      <h1>pizza<h1>
+    </div>
+  `);
+}
 
+function quizQuestion() {
+  return $(`
+    <p>I have a limited understanding of what's happening</p>
+  `);
+}
+
+function generateQuizQuestion(questions, questionIndex) {
+
+}
 
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
+function renderQuizApp(jQueryObj) {
+  $('main').append(jQueryObj);
+}
+
 /********** EVENT HANDLER FUNCTIONS **********/
 
+function trackQuestionAndCorrect() {
+  let currentQuestionNum = 0;
+  let currentCorrectNum = 0;
+  
+  
+  
+  return {
+    getCurrentQuestion() {
+      return currentQuestionNum;
+    }
+  }
+}
+
 // These functions handle events (submit, click, etc)
+
+$(renderQuizApp(quizQuestion()));
