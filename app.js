@@ -1,54 +1,36 @@
 'use strict';
 
-// const store = {
-//   // 5 or more questions are required
-//   questions: [
-//     {
-//       question: 'What color is broccoli?',
-//       answers: [
-//         'red',
-//         'orange',
-//         'pink',
-//         'green'
-//       ],
-//       correctAnswer: 'green'
-//     },
-//     {
-//       question: 'What is the current year?',
-//       answers: [
-//         '1970',
-//         '2015',
-//         '2019',
-//         '2005'
-//       ],
-//       correctAnswer: '2019'
-//     }
-//   ],
-//   quizStarted: false,
-//   questionNumber: 0,
-//   score: 0
-// };
-
-const questions = [
-  {
-    question: 'What question number are we on?',
-    responses: ['1', '2', '3', '4'],
-    correctResponse: '1'
-  },
-  {
-    question: 'Okay, so NOW what question number are we on?',
-    responses: ['1', '3', '5', '2'],
-    correctResponse: '2'
-  },
-  {
-    question: 'What question are we on if we we\'re zero indexed?',
-    responses: ['2', '3', '1', '4'],
-    correctResponse: '2'
-  },
-  {
-    
-  }
-];
+/**
+ * Example store structure
+ */
+const store = {
+  // 5 or more questions are required
+  questions: [
+    {
+      question: 'What color is broccoli?',
+      answers: [
+        'red',
+        'orange',
+        'pink',
+        'green'
+      ],
+      correctAnswer: 'green'
+    },
+    {
+      question: 'What is the current year?',
+      answers: [
+        '1970',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
+    }
+  ],
+  quizStarted: false,
+  questionNumber: 0,
+  score: 0
+};
 
 /**
  * 
@@ -76,3 +58,5 @@ const questions = [
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+"This is Justin's attempt at submitting changes."
