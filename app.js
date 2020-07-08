@@ -31,9 +31,22 @@
 
 const questions = [
   {
-    question: 'what is your favorite color',
-    responses: ['red', 'blue', 'yellow', 'black'],
-    correctResponse: 'red',
+    question: 'What question number are we on?',
+    responses: ['1', '2', '3', '4'],
+    correctResponse: '1'
+  },
+  {
+    question: 'Okay, so NOW what question number are we on?',
+    responses: ['1', '3', '5', '2'],
+    correctResponse: '2'
+  },
+  {
+    question: 'What question are we on if we we\'re zero indexed?',
+    responses: ['2', '3', '1', '4'],
+    correctResponse: '2'
+  },
+  {
+    
   }
 ];
 
