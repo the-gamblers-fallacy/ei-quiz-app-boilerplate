@@ -68,10 +68,10 @@ function quizQuestion(quizObj) {
 function sayCorrect() {
   return $(`
     <div>
-      <p>You got that question ${store.isCorrect ? 'correct!' : 'wrong!'}.
-        You're current score is ${store.numCorrect}.</p>
+      <p>You got that question ${store.isCorrect ? 'correct!' : 'wrong!'}
+        You're current score is ${store.numCorrect}</p>
       <form>
-        <button>Next Question</button>
+        <button class="next-button" type="submit">Next Question</button>
       </form>
     </div>
   `);
@@ -85,7 +85,7 @@ function endPage() {
       <h2>Good Job!</h2>
       <p>You got ${store.numCorrect} correct out of ${store.questions.length}, that's ${quizGrade}%</p>
       <form>
-        <button type="submit">Restart</button>
+        <button class="restart-button" type="submit">Restart</button>
       </form>
     </div>
   `);
@@ -108,8 +108,19 @@ function renderQuizApp(jQueryObj) {
 function handleStartButton() {
   $('main').on('click', '.start-btn', function(evt) {
     evt.preventDefault();
-    console.log('I\'m being clicked!');
     renderQuizApp(quizQuestion(store.questions[store.currentQuestion]));
+  });
+}
+
+function handleSayCorrect(){
+  $('main').on('click', '.next-button', function(evt){
+    evt.preventDefault();
+    store.currentQuestion += 1;
+    if(store.currentQuestion < store.questions.length){
+      renderQuizApp(quizQuestion(store.questions[store.currentQuestion]));
+    } else if (store.currentQuestion === store.questions.length){
+      renderQuizApp(endPage());
+    }
   });
 }
 
@@ -118,7 +129,25 @@ function handleQuizButtons() {
     evt.preventDefault();
     
     let userResponse = $(this).val();
-    console.log(userResponse);
+    if (userResponse === store.questions[store.currentQuestion].correctResponse){
+      store.isCorrect = true;
+      store.numCorrect += 1;
+      renderQuizApp(sayCorrect());
+    } else{
+      store.isCorrect = false;
+      renderQuizApp(sayCorrect());
+    }
+    
+  });
+}
+
+function handleEndPage(){
+  $('main').on('click', '.restart-button', function(evt) {
+    evt.preventDefault();
+
+    store.currentQuestion = 0;
+    store.numCorrect = 0;
+    renderQuizApp(startPage());
   });
 }
   
@@ -137,7 +166,9 @@ function handleQuizButtons() {
 function handleQuizApp(){
   renderQuizApp(startPage());
   handleStartButton();
+  handleSayCorrect();
   handleQuizButtons();
+  handleEndPage();
 }
 
 $(handleQuizApp);
