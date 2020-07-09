@@ -121,7 +121,14 @@ function renderQuizApp(jQueryObj) {
 // These functions handle events (submit, click, etc)
 
 function handleQuizApp(){
+<<<<<<< HEAD
   renderQuizApp(endPage());
+=======
+  startPage();
+  renderQuizApp();
+  trackQuestionAndCorrect();
+  renderQuizApp(quizQuestion(questions[0]));
+>>>>>>> 24a6538fd8a18f5c9d5eb2b18b4a1d0cf6460b0a
 }
 
 $(handleQuizApp);
