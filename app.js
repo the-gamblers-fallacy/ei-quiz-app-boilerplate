@@ -2,33 +2,38 @@
 /* eslint-env jquery */
 /* eslint no-console: "off" */
 
-const questions = [
-  {
-    question: 'How many planets are there?',
-    responses: ['6', '7', '8', '9'],
-    correctResponse: '8'
-  },
-  {
-    question: 'What constellation features three stars forming something of a belt?',
-    responses: ['Orion', 'Ursa Major', 'The Seven Sisters', 'The Moon'],
-    correctResponse: 'Orion'
-  },
-  {
-    question: 'How many times more massive is Saturn than Earth?',
-    responses: ['83', '213', '95', '113'],
-    correctResponse: '95'
-  },
-  {
-    question: 'How long does it take the Earth to revolve around the sun?',
-    responses: ['24 hours', '234 days', '89 hours', '365 days'],
-    correctResponse: '365 days'
-  },
-  {
-    question: 'What is the official name of our sun?',
-    responses: ['Bob', 'Sol', 'The Sun', 'Icarus'],
-    correctResponse: 'Sol'
-  }
-];
+const store = {
+  questions: [
+    {
+      question: 'How many planets are there?',
+      responses: ['6', '7', '8', '9'],
+      correctResponse: '8'
+    },
+    {
+      question: 'What constellation features three stars forming something of a belt?',
+      responses: ['Orion', 'Ursa Major', 'The Seven Sisters', 'The Moon'],
+      correctResponse: 'Orion'
+    },
+    {
+      question: 'How many times more massive is Saturn than Earth?',
+      responses: ['83', '213', '95', '113'],
+      correctResponse: '95'
+    },
+    {
+      question: 'How long does it take the Earth to revolve around the sun?',
+      responses: ['24 hours', '234 days', '89 hours', '365 days'],
+      correctResponse: '365 days'
+    },
+    {
+      question: 'What is the official name of our sun?',
+      responses: ['Bob', 'Sol', 'The Sun', 'Icarus'],
+      correctResponse: 'Sol'
+    },
+  ],
+  currentQuestion: 0,
+  numCorrect: 0,
+  isCorrect: false
+};
 
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
@@ -55,6 +60,32 @@ function quizQuestion(quizObj) {
       <button>${quizObj.responses[2]}</button>
       <button>${quizObj.responses[3]}</button>
     </form>
+  `);
+}
+
+function sayCorrect() {
+  return $(`
+    <div>
+      <p>You got that question ${store.isCorrect ? 'correct!' : 'wrong!'}.
+        You're current score is ${store.numCorrect}.</p>
+      <form>
+        <button>Next Question</button>
+      </form>
+    </div>
+  `);
+}
+
+function endPage() {
+  const quizGrade = store.numCorrect / store.questions.length * 100;
+  
+  return $(`
+    <div>
+      <h2>Good Job!</h2>
+      <p>You got ${store.numCorrect} correct out of ${store.questions.length}, that's ${quizGrade}%</p>
+      <form>
+        <button type="submit">Restart</button>
+      </form>
+    </div>
   `);
 }
 
@@ -90,7 +121,7 @@ function renderQuizApp(jQueryObj) {
 // These functions handle events (submit, click, etc)
 
 function handleQuizApp(){
-  renderQuizApp(quizQuestion(questions[0]));
+  renderQuizApp(endPage());
 }
 
 $(handleQuizApp);
