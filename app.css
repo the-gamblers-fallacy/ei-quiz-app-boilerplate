@@ -9,6 +9,26 @@
 
 /* Groups & Items  (Mobile First) */
 
+main {
+  justify-content: center;
+}
 
+.wrapper {
+  width: 50%;
+  margin: auto;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  flex: 1;
+}
+
+.center {
+  justify-content: center;
+}
 
 /* Groups & Items  (Desktop) */

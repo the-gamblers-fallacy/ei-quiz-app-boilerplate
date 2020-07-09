@@ -29,6 +29,11 @@ const store = {
       responses: ['Bob', 'Sol', 'The Sun', 'Icarus'],
       correctResponse: 'Sol'
     },
+    {
+      question: 'What nation was the first to send a human into space?',
+      responses: ['Russia', 'China', 'The United States', 'Soviet Union'],
+      correctResponse: 'Soviet Union'
+    }
   ],
   currentQuestion: 0,
   numCorrect: 0,
@@ -41,7 +46,7 @@ const store = {
 
 function startPage() {
   return $(`
-    <div class="start-page">
+    <div class="start-page group wrapper">
       <h1>Welcome to our Astronomy Questionnaire!<h1>
       <p>In this quiz, you'll be asked a series of astronomy questions. Do your best!</p>
       <form>
@@ -53,36 +58,41 @@ function startPage() {
 
 function quizQuestion(quizObj) {  
   return $(`
-    <div class="question">  
+    <div class="question wrapper">  
       <p>Q: ${quizObj.question}</p>
-      <form>
-        <button class="choice" value="${quizObj.responses[0]}">${quizObj.responses[0]}</button>
-        <button class="choice" value="${quizObj.responses[1]}">${quizObj.responses[1]}</button>
-        <button class="choice" value="${quizObj.responses[2]}">${quizObj.responses[2]}</button>
-        <button class="choice" value="${quizObj.responses[3]}">${quizObj.responses[3]}</button>
+      <form class="group">
+        <button class="choice item" value="${quizObj.responses[0]}">${quizObj.responses[0]}</button>
+        <button class="choice item" value="${quizObj.responses[1]}">${quizObj.responses[1]}</button>
+        <button class="choice item" value="${quizObj.responses[2]}">${quizObj.responses[2]}</button>
+        <button class="choice item" value="${quizObj.responses[3]}">${quizObj.responses[3]}</button>
       </form>
+      <p>You're on question ${store.currentQuestion + 1} of ${store.questions.length}</p>
     </div>
   `);
 }
 
 function sayCorrect() {
   return $(`
-    <div>
-      <p>You got that question ${store.isCorrect ? 'correct!' : 'wrong!'}
-        You're current score is ${store.numCorrect}</p>
+    <div class="wrapper">
+      <p>
+        You got that question ${store.isCorrect ? 'correct!' : 'wrong!'}
+        The correct answer was ${store.questions[store.currentQuestion].correctResponse}
+      </p>
       <form>
         <button class="next-button" type="submit">Next Question</button>
       </form>
+      <p>You're current score is ${store.numCorrect}</p>
     </div>
   `);
 }
 
 function endPage() {
-  const quizGrade = store.numCorrect / store.questions.length * 100;
+  const quizGrade = Math.round(store.numCorrect / store.questions.length * 100);
   
   return $(`
-    <div>
+    <div class="wrapper">
       <h2>Good Job!</h2>
+      <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="mind blown gif">
       <p>You got ${store.numCorrect} correct out of ${store.questions.length}, that's ${quizGrade}%</p>
       <form>
         <button class="restart-button" type="submit">Restart</button>
@@ -100,10 +110,7 @@ function renderQuizApp(jQueryObj) {
 }
 
 /********** EVENT HANDLER FUNCTIONS **********/
-
-// function trackQuestionAndCorrect() {
-//   let currentQuestionNum = 0;
-//   let currentCorrectNum = 0;
+//These functions handle events for all buttons in the application
   
 function handleStartButton() {
   $('main').on('click', '.start-btn', function(evt) {
@@ -150,18 +157,9 @@ function handleEndPage(){
     renderQuizApp(startPage());
   });
 }
-  
-//   return {
-//     getCurrentQuestion() {
-//       return currentQuestionNum;
-//     }
-//   }
-// }
 
-// These functions handle events (submit, click, etc)
-
-/********** EVENT HANDLER FUNCTIONS **********/
-// These functions handle events (submit, click, etc)
+/********** MAIN FUNCTION **********/
+// This function handles initial page rendering and event listeners
 
 function handleQuizApp(){
   renderQuizApp(startPage());
