@@ -41,11 +41,11 @@ const store = {
 
 function startPage() {
   return $(`
-    <div>
+    <div class="start-page">
       <h1>Welcome to our Astronomy Questionnaire!<h1>
       <p>In this quiz, you'll be asked a series of astronomy questions. Do your best!</p>
       <form>
-        <button type="submit">Get Started!</button>
+        <button class="start-btn" type="submit">Get Started!</button>
       </form>
     </div>
   `);
@@ -55,10 +55,10 @@ function quizQuestion(quizObj) {
   return $(`
     <p>Q: ${quizObj.question}</p>
     <form>
-      <button>${quizObj.responses[0]}</button>
-      <button>${quizObj.responses[1]}</button>
-      <button>${quizObj.responses[2]}</button>
-      <button>${quizObj.responses[3]}</button>
+      <button value="${quizObj.responses[0]}">${quizObj.responses[0]}</button>
+      <button value="${quizObj.responses[1]}">${quizObj.responses[1]}</button>
+      <button value="${quizObj.responses[2]}">${quizObj.responses[2]}</button>
+      <button value="${quizObj.responses[3]}">${quizObj.responses[3]}</button>
     </form>
   `);
 }
@@ -89,9 +89,6 @@ function endPage() {
   `);
 }
 
-// function generateQuizQuestion(questions, questionIndex) {
-
-// }
 
 /********** RENDER FUNCTION(S) **********/
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -106,7 +103,13 @@ function renderQuizApp(jQueryObj) {
 //   let currentQuestionNum = 0;
 //   let currentCorrectNum = 0;
   
-  
+function handleStartButton() {
+  $('.start-page').on('click', '.start-btn', function(evt) {
+    evt.preventDefault();
+    console.log('I\'m being clicked!');
+    renderQuizApp(quizQuestion(store.questions[store.currentQuestion]));
+  });
+}
   
 //   return {
 //     getCurrentQuestion() {
@@ -121,14 +124,8 @@ function renderQuizApp(jQueryObj) {
 // These functions handle events (submit, click, etc)
 
 function handleQuizApp(){
-<<<<<<< HEAD
-  renderQuizApp(endPage());
-=======
-  startPage();
-  renderQuizApp();
-  trackQuestionAndCorrect();
-  renderQuizApp(quizQuestion(questions[0]));
->>>>>>> 24a6538fd8a18f5c9d5eb2b18b4a1d0cf6460b0a
+  renderQuizApp(startPage());
+  handleStartButton();
 }
 
 $(handleQuizApp);
