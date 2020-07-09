@@ -48,8 +48,6 @@ function startPage() {
 
 function quizQuestion(quizObj) {  
   return $(`
-    <p>I have a limited understanding of what's happening</p>
-    <br><p>I'm just going to sneak this in here to keep merges interesting. -J</p>
     <p>Q: ${quizObj.question}</p>
     <form>
       <button>${quizObj.responses[0]}</button>
