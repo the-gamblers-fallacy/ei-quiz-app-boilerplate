@@ -45,6 +45,7 @@ function startPage() {
 function quizQuestion() {
   return $(`
     <p>I have a limited understanding of what's happening</p>
+    <br><p>I'm just going to sneak this in here to keep merges interesting. -J</p>
   `);
 }
 
@@ -82,7 +83,7 @@ $(renderQuizApp(quizQuestion()));
 // These functions handle events (submit, click, etc)
 
 function handleQuizApp(){
-  renderStartPage();
+  startPage();
   renderQuizApp();
   trackQuestionAndCorrect();
 }
