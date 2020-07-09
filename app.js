@@ -5,7 +5,7 @@
 const store = {
   questions: [
     {
-      question: 'How many planets are there?',
+      question: 'How many planets are there in our solar system?',
       responses: ['6', '7', '8', '9'],
       correctResponse: '8'
     },
@@ -47,7 +47,7 @@ const store = {
 function startPage() {
   return $(`
     <div class="start-page group wrapper">
-      <h1>Welcome to our Astronomy Questionnaire!<h1>
+      <h2>Welcome to our Astronomy Questionnaire!</h2>
       <p>In this quiz, you'll be asked a series of astronomy questions. Do your best!</p>
       <form>
         <button class="start-btn" type="submit">Get Started!</button>
@@ -91,7 +91,7 @@ function endPage() {
   
   return $(`
     <div class="wrapper">
-      <h2>Good Job!</h2>
+      <h3>Good Job!</h3>
       <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="mind blown gif">
       <p>You got ${store.numCorrect} correct out of ${store.questions.length}, that's ${quizGrade}%</p>
       <form>
