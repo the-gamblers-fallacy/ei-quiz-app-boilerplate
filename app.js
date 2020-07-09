@@ -53,13 +53,15 @@ function startPage() {
 
 function quizQuestion(quizObj) {  
   return $(`
-    <p>Q: ${quizObj.question}</p>
-    <form>
-      <button value="${quizObj.responses[0]}">${quizObj.responses[0]}</button>
-      <button value="${quizObj.responses[1]}">${quizObj.responses[1]}</button>
-      <button value="${quizObj.responses[2]}">${quizObj.responses[2]}</button>
-      <button value="${quizObj.responses[3]}">${quizObj.responses[3]}</button>
-    </form>
+    <div class="question">  
+      <p>Q: ${quizObj.question}</p>
+      <form>
+        <button class="choice" value="${quizObj.responses[0]}">${quizObj.responses[0]}</button>
+        <button class="choice" value="${quizObj.responses[1]}">${quizObj.responses[1]}</button>
+        <button class="choice" value="${quizObj.responses[2]}">${quizObj.responses[2]}</button>
+        <button class="choice" value="${quizObj.responses[3]}">${quizObj.responses[3]}</button>
+      </form>
+    </div>
   `);
 }
 
@@ -104,10 +106,19 @@ function renderQuizApp(jQueryObj) {
 //   let currentCorrectNum = 0;
   
 function handleStartButton() {
-  $('.start-page').on('click', '.start-btn', function(evt) {
+  $('main').on('click', '.start-btn', function(evt) {
     evt.preventDefault();
     console.log('I\'m being clicked!');
     renderQuizApp(quizQuestion(store.questions[store.currentQuestion]));
+  });
+}
+
+function handleQuizButtons() {
+  $('main').on('click', '.choice', function(evt) {
+    evt.preventDefault();
+    
+    let userResponse = $(this).val();
+    console.log(userResponse);
   });
 }
   
@@ -126,6 +137,7 @@ function handleStartButton() {
 function handleQuizApp(){
   renderQuizApp(startPage());
   handleStartButton();
+  handleQuizButtons();
 }
 
 $(handleQuizApp);
