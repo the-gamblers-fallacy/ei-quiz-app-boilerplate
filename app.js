@@ -37,54 +37,60 @@ const questions = [
 function startPage() {
   return $(`
     <div>
-      <h1>pizza<h1>
+      <h1>Welcome to our Astronomy Questionnaire!<h1>
+      <p>In this quiz, you'll be asked a series of astronomy questions. Do your best!</p>
+      <form>
+        <button type="submit">Get Started!</button>
+      </form>
     </div>
   `);
 }
 
-function quizQuestion() {
+function quizQuestion(quizObj) {  
   return $(`
-    <p>I have a limited understanding of what's happening</p>
+    <p>Q: ${quizObj.question}</p>
+    <form>
+      <button>${quizObj.responses[0]}</button>
+      <button>${quizObj.responses[1]}</button>
+      <button>${quizObj.responses[2]}</button>
+      <button>${quizObj.responses[3]}</button>
+    </form>
   `);
 }
 
-function generateQuizQuestion(questions, questionIndex) {
+// function generateQuizQuestion(questions, questionIndex) {
 
-}
+// }
 
 /********** RENDER FUNCTION(S) **********/
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 function renderQuizApp(jQueryObj) {
-  $('main').append(jQueryObj);
+  $('main').html(jQueryObj);
 }
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
-function trackQuestionAndCorrect() {
-  let currentQuestionNum = 0;
-  let currentCorrectNum = 0;
+// function trackQuestionAndCorrect() {
+//   let currentQuestionNum = 0;
+//   let currentCorrectNum = 0;
   
   
   
-  return {
-    getCurrentQuestion() {
-      return currentQuestionNum;
-    }
-  }
-}
+//   return {
+//     getCurrentQuestion() {
+//       return currentQuestionNum;
+//     }
+//   }
+// }
 
 // These functions handle events (submit, click, etc)
-
-$(renderQuizApp(quizQuestion()));
 
 /********** EVENT HANDLER FUNCTIONS **********/
 // These functions handle events (submit, click, etc)
 
 function handleQuizApp(){
-  renderStartPage();
-  renderQuizApp();
-  trackQuestionAndCorrect();
+  renderQuizApp(quizQuestion(questions[0]));
 }
 
 $(handleQuizApp);
