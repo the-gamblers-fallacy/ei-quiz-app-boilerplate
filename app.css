@@ -12,18 +12,22 @@
 main {
   justify-content: center;
   background-color: darkslategray;
-  margin: 10px;
-  border: 5px solid;
   padding: 20px;
+}
+
+header {
+  padding: 20px;
+  background-color: darkslategray;
+  padding-bottom: 0;
 }
 
 body {
   margin: 10px;
   border: 5px solid;
-  padding: 20px;
+  padding: 0;
   background-image: url(images/stars.jpg);
   background-repeat: repeat;
-  background-position: center;
+  background-position: top;
   background-size: 100%;
   background-color: darkslategray;
   color: #fff;
@@ -69,7 +73,6 @@ img {
     margin: 100px;
     background-image: url(images/stars.jpg);
     background-repeat: no-repeat;
-    background-position: center;
     background-size: 125%;
   }
 }
